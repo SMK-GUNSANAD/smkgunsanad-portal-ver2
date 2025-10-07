@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root{ --hitam:#1a1a1a; --kuning:#ffc107; --hijau:#28a745; --putih:#ffffff; }
-    body{ font-family:'Oswald',sans-serif; margin:0; background:#ffffff; color:var(--hitam); }
+    body{ font-family:'Oswald',sans-serif; margin:0; background:var(--putih); color:var(--hitam); }
     header{ padding:18px; border-bottom:4px solid var(--hijau); background:var(--putih); display:flex; align-items:center; gap:12px; }
     header img{ width:64px; height:64px; border-radius:8px; object-fit:cover; }
     header h1{ margin:0; color:var(--kuning); }
@@ -16,12 +16,12 @@
     label{ display:block; margin-top:10px; font-weight:700; }
     input, textarea, select{ width:100%; padding:10px; margin-top:6px; border:2px solid rgba(0,0,0,0.08); border-radius:8px; }
     .row{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-    .actions{ margin-top:12px; display:flex; gap:10px; }
+    .actions{ margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; }
     .btn-primary{ background:var(--kuning); border:none; padding:12px 16px; border-radius:8px; font-weight:700; cursor:pointer; }
     table{ width:100%; border-collapse:collapse; margin-top:20px; }
     th, td{ border:1px solid rgba(0,0,0,0.08); padding:10px; text-align:center; }
     th{ background:var(--hijau); color:var(--putih); }
-    footer{ background:var(--kuning); color:var(--black); text-align:center; padding:12px; margin-top:24px; font-weight:700; }
+    footer{ background:var(--kuning); color:var(--hitam); text-align:center; padding:12px; margin-top:24px; font-weight:700; }
     @media(max-width:700px){ .row{ grid-template-columns:1fr } header{flex-direction:column; align-items:flex-start} }
   </style>
 </head>
@@ -38,42 +38,42 @@
     <form id="tradeForm">
       <div class="row">
         <div>
-          <label id="lbl-guruAsal">Nama Guru Asal / Original Teacher</label>
-          <input id="namaAsal" required>
+          <label>Nama Guru Asal / Original Teacher</label>
+          <input name="namaAsal" required>
         </div>
         <div>
-          <label id="lbl-guruPeng">Nama Guru Ganti / Replacement Teacher</label>
-          <input id="namaGanti" required>
+          <label>Nama Guru Ganti / Replacement Teacher</label>
+          <input name="namaGanti" required>
         </div>
       </div>
 
       <div class="row">
         <div>
-          <label id="lbl-subjek">Mata Pelajaran / Subject</label>
-          <input id="subjek" required>
+          <label>Mata Pelajaran / Subject</label>
+          <input name="subjek" required>
         </div>
         <div>
-          <label id="lbl-kelas">Kelas / Class</label>
-          <input id="kelas" required>
+          <label>Kelas / Class</label>
+          <input name="kelas" required>
         </div>
       </div>
 
       <div class="row">
         <div>
-          <label id="lbl-tarikh">Tarikh / Date</label>
-          <input type="date" id="tarikh" required>
+          <label>Tarikh / Date</label>
+          <input type="date" name="tarikh" required>
         </div>
         <div>
-          <label id="lbl-waktu">Masa ke / Number of Periods</label>
-          <input type="number" id="masa" min="1" required>
+          <label>Masa ke / Number of Periods</label>
+          <input type="number" name="masa" min="1" required>
         </div>
       </div>
 
-      <label id="lbl-notes">Catatan / Notes</label>
-      <textarea id="catatan" rows="3" placeholder=""></textarea>
+      <label>Catatan / Notes</label>
+      <textarea name="catatan" rows="3" placeholder=""></textarea>
 
       <div class="actions">
-        <button type="submit" class="btn-primary" id="submitBtn">Hantar Transaksi / Submit</button>
+        <button type="submit" class="btn-primary">Hantar Transaksi / Submit</button>
         <button type="button" id="refreshBtn" style="padding:10px;border-radius:8px;">Segarkan / Refresh</button>
       </div>
     </form>
@@ -81,88 +81,55 @@
     <h2 id="listTitle" style="margin-top:20px;">Senarai Transaksi Semasa</h2>
     <table id="transTable" aria-live="polite">
       <thead>
-        <tr><th>Tarikh</th><th>Guru Asal</th><th>Guru Ganti</th><th>Kelas</th><th>Subjek</th><th>Waktu</th><th>Status</th></tr>
+        <tr><th>Tarikh</th><th>Guru Asal</th><th>Guru Ganti</th><th>Kelas</th><th>Subjek</th><th>Waktu</th><th>Catatan</th></tr>
       </thead>
       <tbody></tbody>
     </table>
   </main>
 
-  <footer>SMK GUNSANAD BERABIS CEMERLANG - Versi 2.0 – Oktober 2025</footer>
+  <footer>SMK GUNSANAD BERABIS CEMERLANG</footer>
 
   <script>
-    const texts = {
-      bm: {
-        submit: "Hantar Transaksi / Submit",
-        refresh: "Segarkan / Refresh",
-        listTitle: "Senarai Transaksi Semasa",
-        pageTitle: "SISTEM JUAL BELI JADUAL WAKTU"
-      },
-      en: {
-        submit: "Submit Transaction",
-        refresh: "Refresh",
-        listTitle: "Current Transactions",
-        pageTitle: "TEACHING SCHEDULE TRADE SYSTEM"
-      }
-    };
-
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyn4FO5M2yx5tbLUAbliOmD0Y6t3QGMIJXyiAVYDdYgYhgBfBMlneB3K-rPkKg7Nfdn/exec";
 
-    const urlParams = new URLSearchParams(location.search);
-    const lang = localStorage.getItem('siteLang') || urlParams.get('lang') || 'bm';
-    const setLangPage = (l) => {
-      localStorage.setItem('siteLang', l);
-      document.getElementById('submitBtn').textContent = texts[l].submit;
-      document.getElementById('refreshBtn').textContent = texts[l].refresh;
-      document.getElementById('listTitle').textContent = texts[l].listTitle;
-      document.getElementById('page-title').textContent = texts[l].pageTitle;
-    };
-    setLangPage(lang);
-
-    const form = document.getElementById('tradeForm');
-    form.addEventListener('submit', async (e) => {
+    const form = document.getElementById("tradeForm");
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const payload = {
-        guruAsal: document.getElementById('namaAsal').value,
-        guruPengganti: document.getElementById('namaGanti').value,
-        subjek: document.getElementById('subjek').value,
-        kelas: document.getElementById('kelas').value,
-        tarikh: document.getElementById('tarikh').value,
-        waktu: document.getElementById('masa').value,
-        notes: document.getElementById('catatan').value
-      };
+      const formData = new FormData(form);
       try {
-        await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
-        alert('Transaksi dihantar / Transaction submitted');
-        loadData();
+        const response = await fetch(SCRIPT_URL, { method: "POST", body: formData });
+        const text = await response.text();
+        alert(text);
         form.reset();
+        loadData();
       } catch (err) {
         console.error(err);
-        alert('Gagal hantar transaksi');
+        alert("❌ Gagal menghantar transaksi / Failed to send transaction");
       }
     });
 
-    document.getElementById('refreshBtn').addEventListener('click', loadData);
+    document.getElementById("refreshBtn").addEventListener("click", loadData);
 
     async function loadData() {
       try {
         const res = await fetch(SCRIPT_URL);
         const data = await res.json();
-        const tbody = document.querySelector('#transTable tbody');
-        tbody.innerHTML = '';
+        const tbody = document.querySelector("#transTable tbody");
+        tbody.innerHTML = "";
         for (let i = 1; i < data.length; i++) {
           const row = data[i];
-          const tr = document.createElement('tr');
+          const tr = document.createElement("tr");
           tr.innerHTML = `<td>${row[0] || ''}</td>
                           <td>${row[1] || ''}</td>
                           <td>${row[2] || ''}</td>
-                          <td>${row[3] || ''}</td>
                           <td>${row[4] || ''}</td>
-                          <td>${row[5] || ''}</td>
-                          <td>${row[6] || ''}</td>`;
+                          <td>${row[3] || ''}</td>
+                          <td>${row[6] || ''}</td>
+                          <td>${row[7] || ''}</td>`;
           tbody.appendChild(tr);
         }
       } catch (err) {
-        console.error('Load data error', err);
+        console.error("Load data error", err);
       }
     }
 
