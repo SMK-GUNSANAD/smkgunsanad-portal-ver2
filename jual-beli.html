@@ -90,7 +90,7 @@
   <footer>SMK GUNSANAD BERABIS CEMERLANG</footer>
 
   <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyn4FO5M2yx5tbLUAbliOmD0Y6t3QGMIJXyiAVYDdYgYhgBfBMlneB3K-rPkKg7Nfdn/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbywCxFQfIBKX7UYmFxtQXyaSQJq1QOGeBR2_QeupGkeRDyZJeSu20mmQSj-Zm8wvBOq/exec";
 
     const form = document.getElementById("tradeForm");
     form.addEventListener("submit", async (e) => {
@@ -119,13 +119,13 @@
         for (let i = 1; i < data.length; i++) {
           const row = data[i];
           const tr = document.createElement("tr");
-          tr.innerHTML = `<td>${row[0] || ''}</td>
-                          <td>${row[1] || ''}</td>
-                          <td>${row[2] || ''}</td>
-                          <td>${row[4] || ''}</td>
-                          <td>${row[3] || ''}</td>
-                          <td>${row[6] || ''}</td>
-                          <td>${row[7] || ''}</td>`;
+         tr.innerHTML = `<td>${row[0] || ''}</td>
+                <td>${row[1] || ''}</td>
+                <td>${row[2] || ''}</td>
+                <td>${row[3] || ''}</td>
+                <td>${row[4] || ''}</td>
+                <td>${row[5] || ''}</td>
+                <td>${row[6] || ''}</td>`;
           tbody.appendChild(tr);
         }
       } catch (err) {
