@@ -64,7 +64,7 @@
           <input type="date" name="tarikh" required>
         </div>
         <div>
-          <label>Masa ke / Number of Periods</label>
+          <label>Masa ke / Number </label>
           <input type="text" name="masa" min="1" required>
         </div>
       </div>
@@ -125,7 +125,8 @@
                 <td>${row[3] || ''}</td>
                 <td>${row[4] || ''}</td>
                 <td>${row[5] || ''}</td>
-                <td>${row[6] || ''}</td>`;
+                <td>${row[6] || ''}</td>
+                <td>${row[7] || ''}</td>`;
           tbody.appendChild(tr);
         }
       } catch (err) {
