@@ -1,176 +1,121 @@
 <!doctype html>
 <html lang="ms">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sistem Jual Beli Jadual Waktu - SMK Gunsanad</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portal Digital SMK Gunsanad</title> 
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --hitam:#1a1a1a; --kuning:#ffc107; --hijau:#28a745; --putih:#ffffff;
+    :root{
+      --black:#1a1a1a; --yellow:#ffc107; --green:#28a745; --white:#ffffff;
     }
-    body {
-      font-family:'Oswald',sans-serif; margin:0; background:var(--putih); color:var(--hitam);
-    }
-    header {
-      padding:18px; border-bottom:4px solid var(--hijau);
-      background:var(--putih); display:flex; align-items:center; gap:12px;
-    }
-    header img { width:64px; height:64px; border-radius:8px; object-fit:cover; }
-    header h1 { margin:0; color:var(--kuning); }
-    main { max-width:920px; margin:20px auto; padding:16px; }
-    form {
-      background:var(--putih); border-radius:10px; padding:18px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.06);
-    }
-    label { display:block; margin-top:10px; font-weight:700; }
-    input, textarea, select {
-      width:100%; padding:10px; margin-top:6px;
-      border:2px solid rgba(0,0,0,0.08); border-radius:8px;
-    }
-    .row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-    .actions { margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; }
-    .btn-primary {
-      background:var(--kuning); border:none; padding:12px 16px;
-      border-radius:8px; font-weight:700; cursor:pointer;
-    }
-    table {
-      width:100%; border-collapse:collapse; margin-top:20px;
-    }
-    th, td {
-      border:1px solid rgba(0,0,0,0.08); padding:10px; text-align:center;
-    }
-    th { background:var(--hijau); color:var(--putih); }
-    footer {
-      background:var(--kuning); color:var(--hitam); text-align:center;
-      padding:12px; margin-top:24px; font-weight:700;
-    }
-    @media(max-width:700px){
-      .row{grid-template-columns:1fr}
-      header{flex-direction:column; align-items:flex-start}
-    }
+    body{ font-family: 'Oswald', sans-serif; margin:0; background-color: #ffffff; color:var(--black); }
+    .topbar{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 18px; background:var(--white); border-bottom:4px solid var(--green); }
+    .brand{ display:flex; align-items:center; gap:12px; }
+    .brand img{ width:72px; height:72px; border-radius:50%; object-fit:cover; box-shadow:0 4px 8px rgba(0,0,0,0.12); }
+    .brand h1{ margin:0; color:var(--yellow); font-size:30px; }
+    .brand p{ margin:0; color:var(--black); font-size:15px; }
+    .lang-switch{ margin-left:auto; display:flex; gap:8px; }
+    .lang-btn{ border:2px solid rgba(0,0,0,0.08); padding:6px 10px; border-radius:6px; background:transparent; cursor:pointer; font-weight:700; }
+    main{ padding:28px; max-width:1100px; margin:0 auto; }
+    .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
+    .card{ padding:32px; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.06); background:linear-gradient(180deg,var(--white), #fbfbfb); text-align:center; font-weight:700; text-transform:uppercase; }
+    .btn-hem, .btn-erph{ background:var(--yellow); color:var(--black); padding:18px 8px; border-radius:12px; display:inline-block; text-decoration:none; }
+    .btn-mmi, .btn-kawalan{ background:var(--white); color:var(--black); padding:18px 8px; border-radius:12px; display:inline-block; text-decoration:none; border:2px solid rgba(0,0,0,0.06); }
+    footer{ background:var(--yellow); color:var(--black); text-align:center; padding:14px; font-weight:700; margin-top:36px; }
+    footer small{ display:block; font-weight:600; margin-top:6px; color:var(--black); font-size:0.9em; }
+    @media(max-width:600px){ .brand h1{font-size:18px} .brand img{width:64px;height:64px} main{padding:16px} }
   </style>
 </head>
 <body>
-  <header>
-    <img src="logo-smkgunsanad.png" alt="logo">
-    <div>
-      <h1>SISTEM JUAL BELI JADUAL WAKTU</h1>
-      <div style="font-weight:700;">SMK GUNSANAD BERABIS CEMERLANG</div>
+  <header class="topbar">
+    <div class="brand">
+      <img src="logo-smkgunsanad.png" alt="Logo">
+      <div>
+        <h1 id="title-text">DASHBOARD SMK GUNSANAD</h1>
+        <p id="subtitle-text">SMK GUNSANAD BERABIS CEMERLANG</p>
+      </div>
+    </div>
+
+    <div class="lang-switch" aria-hidden="false">
+      <button class="lang-btn" id="btn-bm">BM</button>
+      <button class="lang-btn" id="btn-en">EN</button>
     </div>
   </header>
 
   <main>
-    <form id="tradeForm">
-      <div class="row">
-        <div>
-          <label>Nama Guru Asal</label>
-          <input name="namaAsal" required>
-        </div>
-        <div>
-          <label>Nama Guru Ganti</label>
-          <input name="namaGanti" required>
-        </div>
-      </div>
+       <section style="margin-top:10px; text-align:center;">
+      <h2 id="welcome-title">Selamat Datang</h2>
+      <p id="welcome-desc">Portal rasmi untuk warga SMK Gunsanad. Gunakan menu di bawah untuk mengakses sistem sekolah.</p>
+    </section>
 
-      <div class="row">
-        <div>
-          <label>Mata Pelajaran</label>
-          <input name="subjek" required>
-        </div>
-        <div>
-          <label>Kelas</label>
-          <input name="kelas" required>
-        </div>
-      </div>
+     <main>
+       <section style="margin-top:30px; text-align:left;">
+     
+    </section>
+    
+    <div class="grid" id="buttonGrid">
+      
+    </div>
+    
+    
+    <div class="grid" id="buttonGrid">
+      <a href="#" class="card btn-hem" id="unit-hem">UNIT HEM</a>
+      <a href="jual-beli.html" target="_blank" class="card btn-mmi" id="mmi">MMI SEKOLAH (JUAL BELI)</a>
+      <a href="#" class="card btn-erph" id="erph">ERPH</a>
+      <a href="#" class="card btn-kawalan" id="kawalan">KAWALAN KELAS</a>
+    </div>
 
-      <div class="row">
-        <div>
-          <label>Tarikh</label>
-          <input type="date" name="tarikh" required>
-        </div>
-        <div>
-          <label>Masa Ke</label>
-          <input type="text" name="masa" required>
-        </div>
-      </div>
-
-      <label>Catatan</label>
-      <textarea name="catatan" rows="3"></textarea>
-
-      <div class="actions">
-        <button type="submit" class="btn-primary">Hantar Transaksi</button>
-        <button type="button" id="refreshBtn">Segarkan / Refresh</button>
-      </div>
-    </form>
-
-    <h2 style="margin-top:20px;">Senarai Transaksi Semasa</h2>
-    <table id="transTable">
-      <thead>
-        <tr>
-          <th>Tarikh Rekod</th>
-          <th>Guru Asal</th>
-          <th>Guru Ganti</th>
-          <th>Subjek</th>
-          <th>Kelas</th>
-          <th>Tarikh</th>
-          <th>Masa</th>
-          <th>Catatan</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+  
   </main>
 
-  <footer>SMK GUNSANAD BERABIS CEMERLANG</footer>
+  <footer>
+    SMK GUNSANAD BERABIS CEMERLANG
+    <small>Versi 2.0 – Oktober 2025</small>
+  </footer>
 
   <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwmei3t3UonCgg1ERWGVaWWhRhCD9B7yOlFfg7nvSQALHq7jgPu5E2FFq06NceCjSYR/exec";
-
-    const form = document.getElementById("tradeForm");
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-      try {
-        const response = await fetch(SCRIPT_URL, { method: "POST", body: formData });
-        const text = await response.text();
-        alert(text);
-        form.reset();
-        loadData();
-      } catch (err) {
-        console.error(err);
-        alert("❌ Gagal menghantar transaksi");
+    const texts = {
+      bm: {
+        title: "DASHBOARD SMK GUNSANAD",
+        subtitle: "SMK GUNSANAD BERABIS CEMERLANG",
+        unitHem: "UNIT HEM",
+        mmi: "MMI SEKOLAH (JUAL BELI)",
+        erph: "ERPH",
+        kawalan: "KAWALAN KELAS",
+        welcomeTitle: "Selamat Datang",
+        welcomeDesc: "Portal rasmi untuk warga SMK Gunsanad. Gunakan menu di bawah untuk mengakses sistem sekolah."
+      },
+      en: {
+        title: "SMK GUNSANAD DASHBOARD",
+        subtitle: "SMK GUNSANAD BERABIS CEMERLANG",
+        unitHem: "Student Affairs Unit",
+        mmi: "MMI SCHOOL (TRADE PERIODS)",
+        erph: "ERPH",
+        kawalan: "CLASS CONTROL",
+        welcomeTitle: "Welcome",
+        welcomeDesc: "Official portal for SMK Gunsanad staff. Use the menu above to access school systems."
       }
-    });
+    };
 
-    document.getElementById("refreshBtn").addEventListener("click", loadData);
+    const setLang = (lang) => {
+      localStorage.setItem('siteLang', lang);
+      const t = texts[lang];
+      document.getElementById('title-text').textContent = t.title;
+      document.getElementById('subtitle-text').textContent = t.subtitle;
+      document.getElementById('unit-hem').textContent = t.unitHem;
+      document.getElementById('mmi').textContent = t.mmi;
+      document.getElementById('erph').textContent = t.erph;
+      document.getElementById('kawalan').textContent = t.kawalan;
+      document.getElementById('welcome-title').textContent = t.welcomeTitle;
+      document.getElementById('welcome-desc').textContent = t.welcomeDesc;
+    };
 
-    async function loadData() {
-      try {
-        const res = await fetch(SCRIPT_URL);
-        const data = await res.json();
-        const tbody = document.querySelector("#transTable tbody");
-        tbody.innerHTML = "";
-        for (let i = 1; i < data.length; i++) {
-          const row = data[i];
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td>${row[0] || ""}</td>
-            <td>${row[1] || ""}</td>
-            <td>${row[2] || ""}</td>
-            <td>${row[3] || ""}</td>
-            <td>${row[4] || ""}</td>
-            <td>${row[5] || ""}</td>
-            <td>${row[6] || ""}</td>
-            <td>${row[7] || ""}</td>`;
-          tbody.appendChild(tr);
-        }
-      } catch (err) {
-        console.error("Load data error", err);
-      }
-    }
+    document.getElementById('btn-bm').addEventListener('click', () => setLang('bm'));
+    document.getElementById('btn-en').addEventListener('click', () => setLang('en'));
 
-    loadData();
+    const saved = localStorage.getItem('siteLang') || 'bm';
+    setLang(saved);
   </script>
 </body>
 </html>
