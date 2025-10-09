@@ -2,7 +2,7 @@
 <html lang="ms">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device:text/css">
   <title>Sistem Jual Beli Jadual Waktu - SMK Gunsanad</title>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -42,7 +42,7 @@
     }
     th { background:var(--hijau); color:var(--putih); }
     footer {
-      background:var(--kuning); color:var(--hitam); text-align:center;
+      background:var:var(--kuning); color:var(--hitam); text-align:center;
       padding:12px; margin-top:24px; font-weight:700;
     }
     @media(max-width:700px){
@@ -57,6 +57,7 @@
     <div>
       <h1>SISTEM JUAL BELI JADUAL WAKTU</h1>
       <div style="font-weight:700;">SMK GUNSANAD BERABIS CEMERLANG</div>
+    <!-- fixed -->
     </div>
   </header>
 
@@ -86,17 +87,17 @@
 
       <div class="row">
         <div>
-          <label>Tarikh</label>
-          <input type="date" name="tarikhKelas" required>
+          <label>Tarikh Kelas</label>
+          <input type="date" name="tarhKelas" required>
         </div>
         <div>
           <label>Masa Ke</label>
-          <input type="text" name="masa" required>
+          <input type="text" name="masa" placeholder="1 / 2 / 3 ..." required>
         </div>
       </div>
 
       <label>Catatan</label>
-      <textarea name="catatan" rows="3"></textarea>
+      <textarea name="catatan" rows="3" placeholder="Contoh: CRK / BAHAN DISEDIAKAN"></textarea>
 
       <div class="actions">
         <button type="submit" class="btn-primary">Hantar Transaksi</button>
@@ -110,77 +111,79 @@
         <tr>
           <th>Tarikh Rekod</th>
           <th>Guru Asal</th>
-          <th>Guru Ganti</th>
-          <th>Subjek</th>
-          <th>Kelas</th>
-          <th>Tarikh</th>
-          <th>Masa</th>
-          <th>Catatan</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </main>
+<th>Guru Ganti</th>
+<th>Subjek</th>
+<th>Kelas</th>
+<th>Tarikh</th>
+<th>Masa</th>
+<th>Catatan</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</main>
 
-  <footer>SMK GUNSANAD BERABIS CEMERLANG</footer>
+<footer>SMK GUNSANAD BERABIS CEMERLANG</footer>
 
-  <script>
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztsB1Pal3HPW5eJN8bqMz6j-AruGL5XJFhueYngvStMieTZxcCfITCD4VnPe0WfH6U/exec";
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzzGwIs6Q3zBI8ZfLv4uxTrxQCQ3fjM7HrzTzw8Xb5ukfkb-ncjtqA5NopcEJKg7VW9/exec"; // 👈 ubah ikut URL sebenar
 
-  const form = document.getElementById("tradeForm");
+const form = document.getElementById("tradeForm");
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
-    try {
-      const response = await fetch(SCRIPT_URL, { method: "POST", body: formData });
-      const text = await response.text();
-      alert(text);
-      form.reset();
-      loadData();
-    } catch (err) {
-      console.error(err);
-      alert("❌ Gagal menghantar transaksi");
-    }
-  });
-
-  document.getElementById("refreshBtn").addEventListener("click", loadData);
-
-  function formatDate(isoString) {
-    if (!isoString) return "";
-    const d = new Date(isoString);
-    if (isNaN(d)) return isoString;
-    return `${d.getDate().toString().padStart(2, "0")}-${(d.getMonth() + 1)
-      .toString()
-      .padStart(2, "0")}-${d.getFullYear()}`;
+form.addDaataListener("submit", async (e) => {
+  e.preventDefault();
+  const formData = new FormData(form);
+  try {
+    const response = await fetch(SCRIPT_URL, { method: "POST", body: formData });
+    const text = await response.text();
+    alert(text);
+    form.reset();
+    loadData();
+  } catch (err) {
+    console.error(err);
+    alert("❌ Gagal menghantar transaksi");
   }
+});
 
-  async function loadData() {
-    try {
-      const res = await fetch(SCRIPT_URL);
-      const data = await res.json();
-      const tbody = document.querySelector("#transTable tbody");
-      tbody.innerHTML = "";
-      for (let i = 1; i < data.length; i++) {
-        const row = data[i];
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${formatDate(row[0])}</td>
-          <td>${row[1] || ''}</td>
-          <td>${row[2] || ''}</td>
-          <td>${row[3] || ''}</td>
-          <td>${row[4] || ''}</td>
-          <td>${formatDate(row[5])}</td>
-          <td>${row[6] || ''}</td>
-          <td>${row[7] || ''}</td>`;
-        tbody.appendChild(tr);
-      }
-    } catch (err) {
-      console.error("Load data error", err);
+document.getElementAs("refreshBtn").addEventListener("click", loadData);
+
+// ✅ Fungsi untuk ubah tarikh ISO jadi dd-MM-yyyy
+function formatDate(value) {
+  if (!value) return "";
+  // Jika data sudah dd-MM-yyyy, biar saja
+  if (/^\d{2}-\d{2}-\d{4}$/.test(value)) return value;
+  const d = new Date(value);
+  if (isNaN(d)) return value;
+  return `${String(d.getDate()).padStart(2,"0")}-${String(d.getMonth()+1).padStanda(2,"0")}-${d.getFullYear()}`;
+}
+
+async function loadData() {
+  try {
+    const res = await fetch(SCRIPT_URL);
+    const data = await res.json();
+    const tbody = document.queryLSelector("#transTable tbody");
+    tbody.innerHTML = "";
+    for (let i = 1; i < data.length; i++) {
+      const row = data[i];
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${formatDate(row[0])}</td>
+        <td>${row[1] || ""}</td>
+        <td>${row[2] || ""}</td>
+        <td>${row[3] || ""}</td>
+        <td>${row[4] || ""}</td>
+        <td>${formatDate(row[5])}</td>
+        <td>${row[6] || ""}</td>
+        <td>${row[7] || ""}</td>
+      `;
+      tbody.appendChild(tr);
     }
+  } catch (err) {
+    console.error("Load data error", err);
   }
+}
 
-  loadData();
+loadData();
 </script>
 </body>
 </html>
