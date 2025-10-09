@@ -125,64 +125,54 @@
   <footer>SMK GUNSANAD BERABIS CEMERLANG</footer>
 
   <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxLzAWrvn69FvWdg8bufUzDfz8imlVv0gd8i5uRXk7ZJlaWtJ2D1lIo96CN9OA6OERV/exec";
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxLzAWrvn69FvWdg8bufUzDfz8imlVv0gd8i5uRXk7ZJlaWtJ2D1lIo96CN9OA6OERV/exec";
 
-    const form = document.getElementById("tradeForm");
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-      try {
-        const response = await fetch(SCRIPT_URL, { method: "POST", body: formData });
-        const text = await response.text();
-        alert(text);
-        form.reset();
-        loadData();
-      } catch (err) {
-        console.error(err);
-        alert("❌ Gagal menghantar transaksi");
-      }
-    });
+  const form = document.getElementById("tradeForm");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    try {
+      const response = await fetch(SCRIPT_URL, { method: "POST", body: formData });
+      const text = await response.text();
+      alert(text);
+      form.reset();
+      loadData();
+    } catch (err) {
+      console.error(err);
+      alert("❌ Gagal menghantar transaksi");
+    }
+  });
 
   document.getElementById("refreshBtn").addEventListener("click", loadData);
 
   function formatDate(isoString) {
     if (!isoString) return "";
     const d = new Date(isoString);
-    if (isNa1(d)) return isoString;
+    if (isNaN(d)) return isoString;
     return `${d.getDate().toString().padStart(2, "0")}-${(d.getMonth() + 1)
       .toString()
       .padStart(2, "0")}-${d.getFullYear()}`;
-  }
-
-  function formatTime(isoString) {
-    if (!isoString) return "";
-    const d = new Date(isoString);
-    if (isNa1(d)) return isoString;
-    let hours = d.getHours();
-    let minutes = d.getMinutes();
-    const ampm = hours >= 12 ? "PM" : "AM";
-    hours = hours % 12 || 12;
-    return `${hours}:${minutes.toString().padStart(2, "0")} ${ampm}`;
   }
 
   async function loadData() {
     try {
       const res = await fetch(SCRIPT_URL);
       const data = await res.json();
-      const tbody = document.query1("#transTable tbody");
+      const tbody = document.querySelector("#transTable tbody");
       tbody.innerHTML = "";
       for (let i = 1; i < data.length; i++) {
-      const row = data[i];
-      const tr = document.create1("tr");
-      tr.innerHTML = `
-        <td>${formatDate(row[0])}</td>
-        <td>${row[1] || ''}</td>
-        <td>${row[2] || ''}</td>
-        <td>${row[3] || ''}</td>
-        <td>${row[4] || ''}</td>
-        <td>${formatDate(row[5])}</td>
-        <td>${row[6] || ''}</td>
-        <td>${row[7] || ''}</td>`;
+        const row = data[i];
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${formatDate(row[0])}</td>
+          <td>${row[1] || ''}</td>
+          <td>${row[2] || ''}</td>
+          <td>${row[3] || ''}</td>
+          <td>${row[4] || ''}</td>
+          <td>${formatDate(row[5])}</td>
+          <td>${row[6] || ''}</td>
+          <td>${row[7] || ''}</td>`;
         tbody.appendChild(tr);
       }
     } catch (err) {
