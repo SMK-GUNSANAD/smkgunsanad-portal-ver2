@@ -26,104 +26,7 @@
       background:var(--kuning); color:var(--hitam); text-align:center;
       padding:12px; margin-top:24px; font-weight:700;
     }
-
-  </style>
-</head>
-<body>
-  <header class="topbar">
-    <div class="brand">
-      <img src="logo-smkgunsanad.png" alt="Logo">
-      <div>
-        <h1 id="title-text">DASHBOARD SMK GUNSANAD</h1>
-        <p id="subtitle-text">SMK GUNSANAD BERABIS CEMERLANG</p>
-      </div>
-    </div>
-
-    <div class="lang-switch" aria-hidden="false">
-      <button class="lang-btn" id="btn-bm">BM</button>
-      <button class="lang-btn" id="btn-en">EN</button>
-    </div>
-  </header>
-
-  <main>
-       <section style="margin-top:10px; text-align:center;">
-      <h2 id="welcome-title">Selamat Datang</h2>
-      <p id="welcome-desc">Portal rasmi untuk warga SMK Gunsanad. Gunakan menu di bawah untuk mengakses sistem sekolah.</p>
-    </section>
-
-     <main>
-       <section style="margin-top:30px; text-align:left;">
-     
-    </section>
-    
-    <div class="grid" id="buttonGrid">
-      
-    </div>
-    
-    
-    <div class="grid" id="buttonGrid">
-      <a href="#" class="card btn-hem" id="unit-hem">UNIT HEM</a>
-      <a href="jual-beli.html" target="_blank" class="card btn-mmi" id="mmi">MMI SEKOLAH (JUAL BELI)</a>
-      <a href="#" class="card btn-erph" id="erph">ERPH</a>
-      <a href="#" class="card btn-kawalan" id="kawalan">KAWALAN KELAS</a>
-    </div>
-
-  
-  </main>
-    
-<footer>
-  <div class="footer-content">
-    <img src="logo-smkgunsanad.png" alt="Logo SMK Gunsanad">
-    <div>SMK GUNSANAD BERABIS CEMERLANG</div>
-    <small>Versi 2.0 &nbsp;|&nbsp; Dikemaskini Oktober 2025</small>
-  </div>
-</footer>
-
-  <script>
-    const texts = {
-      bm: {
-        title: "DASHBOARD SMK GUNSANAD",
-        subtitle: "SMK GUNSANAD BERABIS CEMERLANG",
-        unitHem: "UNIT HEM",
-        mmi: "MMI SEKOLAH (JUAL BELI)",
-        erph: "ERPH",
-        kawalan: "KAWALAN KELAS",
-        welcomeTitle: "Selamat Datang",
-        welcomeDesc: "Portal rasmi untuk warga SMK Gunsanad. Gunakan menu di bawah untuk mengakses sistem sekolah."
-      },
-      en: {
-        title: "SMK GUNSANAD DASHBOARD",
-        subtitle: "SMK GUNSANAD BERABIS CEMERLANG",
-        unitHem: "Student Affairs Unit",
-        mmi: "MMI SCHOOL (TRADE PERIODS)",
-        erph: "ERPH",
-        kawalan: "CLASS CONTROL",
-        welcomeTitle: "Welcome",
-        welcomeDesc: "Official portal for SMK Gunsanad staff. Use the menu above to access school systems."
-      }
-    };
-
-    const setLang = (lang) => {
-      localStorage.setItem('siteLang', lang);
-      const t = texts[lang];
-      document.getElementById('title-text').textContent = t.title;
-      document.getElementById('subtitle-text').textContent = t.subtitle;
-      document.getElementById('unit-hem').textContent = t.unitHem;
-      document.getElementById('mmi').textContent = t.mmi;
-      document.getElementById('erph').textContent = t.erph;
-      document.getElementById('kawalan').textContent = t.kawalan;
-      document.getElementById('welcome-title').textContent = t.welcomeTitle;
-      document.getElementById('welcome-desc').textContent = t.welcomeDesc;
-    };
-
-    document.getElementById('btn-bm').addEventListener('click', () => setLang('bm'));
-    document.getElementById('btn-en').addEventListener('click', () => setLang('en'));
-
-    const saved = localStorage.getItem('siteLang') || 'bm';
-    setLang(saved);
-  </script>
-    
-  <style>
+ 
   html, body {
     height: 100%;
     margin: 0;
@@ -173,7 +76,102 @@
     letter-spacing: 0.5px;
     color: #222;
   }
-</style>
 
+  </style>
+  
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="logo-smkgunsanad.png" alt="Logo">
+      <div>
+        <h1 id="title-text">DASHBOARD SMK GUNSANAD</h1>
+        <p id="subtitle-text">SMK GUNSANAD BERABIS CEMERLANG</p>
+      </div>
+    </div>
+
+    <div class="lang-switch" aria-hidden="false">
+      <button class="lang-btn" id="btn-bm">BM</button>
+      <button class="lang-btn" id="btn-en">EN</button>
+    </div>
+  </header>
+
+  <main>
+       <section style="margin-top:10px; text-align:center;">
+      <h2 id="welcome-title">Selamat Datang</h2>
+      <p id="welcome-desc">Portal rasmi untuk warga SMK Gunsanad. Gunakan menu di bawah untuk mengakses sistem sekolah.</p>
+    </section>
+
+     <main>
+       <section style="margin-top:30px; text-align:left;">
+     
+    </section>
+    
+    <div class="grid" id="buttonGrid">
+      
+    </div>
+    
+    
+    <div class="grid" id="buttonGrid">
+      <a href="#" class="card btn-hem" id="unit-hem">UNIT HEM</a>
+      <a href="jual-beli.html" target="_blank" class="card btn-mmi" id="mmi">MMI SEKOLAH (JUAL BELI)</a>
+      <a href="#" class="card btn-erph" id="erph">ERPH</a>
+      <a href="#" class="card btn-kawalan" id="kawalan">KAWALAN KELAS</a>
+    </div>
+
+  
+  </main>
+    
+<footer>
+  <div class="footer-content">
+    <div>SMK GUNSANAD BERABIS CEMERLANG</div>
+    <small>Versi 2.0 &nbsp;|&nbsp; Dikemaskini Oktober 2025</small>
+  </div>
+</footer>
+
+  <script>
+    const texts = {
+      bm: {
+        title: "DASHBOARD SMK GUNSANAD",
+        subtitle: "SMK GUNSANAD BERABIS CEMERLANG",
+        unitHem: "UNIT HEM",
+        mmi: "MMI SEKOLAH (JUAL BELI)",
+        erph: "ERPH",
+        kawalan: "KAWALAN KELAS",
+        welcomeTitle: "Selamat Datang",
+        welcomeDesc: "Portal rasmi untuk warga SMK Gunsanad. Gunakan menu di bawah untuk mengakses sistem sekolah."
+      },
+      en: {
+        title: "SMK GUNSANAD DASHBOARD",
+        subtitle: "SMK GUNSANAD BERABIS CEMERLANG",
+        unitHem: "Student Affairs Unit",
+        mmi: "MMI SCHOOL (TRADE PERIODS)",
+        erph: "ERPH",
+        kawalan: "CLASS CONTROL",
+        welcomeTitle: "Welcome",
+        welcomeDesc: "Official portal for SMK Gunsanad staff. Use the menu above to access school systems."
+      }
+    };
+
+    const setLang = (lang) => {
+      localStorage.setItem('siteLang', lang);
+      const t = texts[lang];
+      document.getElementById('title-text').textContent = t.title;
+      document.getElementById('subtitle-text').textContent = t.subtitle;
+      document.getElementById('unit-hem').textContent = t.unitHem;
+      document.getElementById('mmi').textContent = t.mmi;
+      document.getElementById('erph').textContent = t.erph;
+      document.getElementById('kawalan').textContent = t.kawalan;
+      document.getElementById('welcome-title').textContent = t.welcomeTitle;
+      document.getElementById('welcome-desc').textContent = t.welcomeDesc;
+    };
+
+    document.getElementById('btn-bm').addEventListener('click', () => setLang('bm'));
+    document.getElementById('btn-en').addEventListener('click', () => setLang('en'));
+
+    const saved = localStorage.getItem('siteLang') || 'bm';
+    setLang(saved);
+  </script>
+  
 </body>
 </html>
