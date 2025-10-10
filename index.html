@@ -70,6 +70,14 @@
 
   
   </main>
+    
+<footer>
+  <div class="footer-content">
+    <img src="logo-smkgunsanad.png" alt="Logo SMK Gunsanad">
+    <div>SMK GUNSANAD BERABIS CEMERLANG</div>
+    <small>Versi 2.0 &nbsp;|&nbsp; Dikemaskini Oktober 2025</small>
+  </div>
+</footer>
 
   <script>
     const texts = {
@@ -115,29 +123,55 @@
     setLang(saved);
   </script>
     
-    <style>
+  <style>
   html, body {
     height: 100%;
     margin: 0;
     display: flex;
     flex-direction: column;
     font-family: 'Poppins', sans-serif;
+    background-color: #fff;
   }
 
   main {
     flex: 1;
+    padding-bottom: 40px; /* beri ruang supaya footer tak rapat sangat */
   }
 
   footer {
-    background-color: #ffcc00;
+    background-color: #ffc107;
     color: #000;
     text-align: center;
-    font-weight: bold;
+    padding: 18px 10px;
+    font-weight: 700;
     text-transform: uppercase;
-    padding: 15px 0;
-    width: 100%;
     letter-spacing: 1px;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin-top: auto;
+    box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  footer .footer-content {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  footer img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  footer small {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: #222;
   }
 </style>
 
