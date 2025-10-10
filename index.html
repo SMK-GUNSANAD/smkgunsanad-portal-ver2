@@ -22,13 +22,15 @@
     .card{ padding:32px; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.06); background:linear-gradient(180deg,var(--white), #fbfbfb); text-align:center; font-weight:700; text-transform:uppercase; }
     .btn-hem, .btn-erph{ background:var(--yellow); color:var(--black); padding:18px 8px; border-radius:12px; display:inline-block; text-decoration:none; }
     .btn-mmi, .btn-kawalan{ background:var(--white); color:var(--black); padding:18px 8px; border-radius:12px; display:inline-block; text-decoration:none; border:2px solid rgba(0,0,0,0.06); }
-    footer { background:var(--hijau); color:var(--putih); }
-    footer {
+        footer {
       background:var(--kuning); color:var(--hitam); text-align:center;
       padding:12px; margin-top:24px; font-weight:700;
     }
-    footer small{ display:block; font-weight:600; margin-top:6px; color:var(--black); font-size:0.9em; }
-    @media(max-width:600px){ .brand h1{font-size:18px} .brand img{width:64px;height:64px} main{padding:16px} }
+    @media(max-width:700px){
+      .row{grid-template-columns:1fr}
+      header{flex-direction:column; align-items:flex-start}
+    }
+
   </style>
 </head>
 <body>
