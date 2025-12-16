@@ -52,14 +52,19 @@
     
 .btn-back{
   background: var(--hijau);
+  border: none;
+  padding: 12px 16px;   /* saiz */
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
   color: var(--putih);
-  max-width:100px;
-  height: 60px;   
-  font-size: 14px;     /* tulisan */
-  margin:0 auto;
+}
+.back-wrapper{
+  text-align: center;
+  margin: 30px 0 10px;
 }
     
-  /* GRID DIJADIKAN 1 BARIS KE BAWAH */
+  /* GRID 1 BARIS KE BAWAH */
   .grid{
   display:grid;
   grid-template-columns: 1fr;
@@ -71,7 +76,7 @@
 
 /* BUTTON */
 .card{
-  width:100%;        /* ❗ SEMUA BUTTON SAMA LEBAR */
+  width:100%;        /* SEMUA BUTTON SAMA LEBAR */
   height:20px;
   border-radius:12px;
   box-shadow:0 6px 18px rgba(0,0,0,0.06);
@@ -87,7 +92,7 @@
   justify-content:center;
 }
 
-    /* 🔽 BUTTON TENGAH & KEMAS */
+    /*  BUTTON TENGAH & KEMAS */
     .grid a{
       max-width:600px;
       margin:0 auto;
