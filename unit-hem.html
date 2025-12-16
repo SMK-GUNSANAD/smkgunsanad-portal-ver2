@@ -4,101 +4,131 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PENGURUSAN AKADEMIK - SMK Gunsanad</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --hitam:#1a1a1a; --kuning:#ffc107; --hijau:#28a745; --putih:#ffffff;
+      --hitam:#1a1a1a;
+      --kuning:#ffc107;
+      --hijau:#28a745;
+      --putih:#ffffff;
     }
-    body {
-      font-family:'Oswald',sans-serif; margin:0; background:var(--putih); color:var(--hitam);
-    }
-    header {
-      padding:18px; border-bottom:4px solid var(--hijau);
-      background:var(--putih); display:flex; align-items:center; gap:12px;
-    }
-   
-    header img { width:64px; height:64px; border-radius:8px; object-fit:cover; }
-    header h1 { margin:0; color:var(--kuning); }
-    main { max-width:920px; margin:20px auto; padding:16px; }
-    form {
-      background:var(--putih); border-radius:10px; padding:18px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.06);
-    }
-    label { display:block; margin-top:10px; font-weight:700; }
-    input, textarea, select {
-      width:100%; padding:10px; margin-top:6px;
-      border:2px solid rgba(0,0,0,0.08); border-radius:8px;
-    }
-    main{ padding:28px; max-width:1100px; margin:0 auto; }
-    .grid{
-  display:grid;
-  grid-template-columns: 1fr; /* 1 column sahaja */
-  gap:20px;
-}
 
-    .actions { margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; }
-    .btn-primary {
-      background:var(--kuning); border:none; padding:12px 16px;
-      border-radius:8px; font-weight:700; cursor:pointer;
+    body {
+      font-family:'Oswald',sans-serif;
+      margin:0;
+      background:var(--putih);
+      color:var(--hitam);
     }
-    table {
-      width:100%; border-collapse:collapse; margin-top:20px;
+
+    header {
+      padding:18px;
+      border-bottom:4px solid var(--hijau);
+      background:var(--putih);
+      display:flex;
+      align-items:center;
+      gap:12px;
     }
-    th, td {
-      border:1px solid rgba(0,0,0,0.08); padding:10px; text-align:center;
+
+    header img {
+      width:64px;
+      height:64px;
+      border-radius:8px;
+      object-fit:cover;
     }
-    th { background:var(--hijau); color:var(--putih); }
-    
+
+    header h1 {
+      margin:0;
+      color:var(--kuning);
+    }
+
     main {
-    flex: 3;
-    padding-bottom: 150px; /* beri ruang supaya footer tak rapat sangat */
-  }
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px;
+      padding-bottom:150px;
+    }
+
+    /* 🔽 GRID DIJADIKAN 1 BARIS KE BAWAH */
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr; /* SATU COLUMN */
+      gap:20px;
+    }
+
+    /* 🔽 BUTTON TENGAH & KEMAS */
+    .grid a{
+      max-width:600px;
+      margin:0 auto;
+    }
+
+    .card{
+      padding:22px;
+      border-radius:12px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.06);
+      background:#fbfbfb;
+      text-align:center;
+      font-weight:700;
+      text-transform:uppercase;
+      text-decoration:none;
+      color:var(--hitam);
+    }
+
+    .btn-perdana,
+    .btn-t6,
+    .btn-ppki,
+    .btn-ubk,
+    .btn-hem,
+    .btn-kokum{
+      background:var(--kuning);
+    }
+
     footer {
-      background:var(--putih); color:var(--hitam); text-align:center;
-      padding:12px; margin-top:24px; font-weight:700;
+      background:var(--putih);
+      color:var(--hitam);
+      text-align:center;
+      padding:12px;
+      font-weight:700;
     }
+
     @media(max-width:700px){
-      .row{grid-template-columns:2fr}
-      header{flex-direction:column; align-items:flex-start}
+      header{
+        flex-direction:column;
+        align-items:flex-start;
+      }
     }
-    main{ padding:28px; max-width:1100px; margin:0 auto; }
-    .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:30px; }
-    .card{ padding:32px; border-radius:12px; box-shadow:2 6px 18px rgba(0,0,0,0.06); background:linear-gradient(180deg,var(--white), #fbfbfb); text-align:center; font-weight:700; text-transform:uppercase; }
-    .btn-hem, .btn-perdana{ background:var(--kuning); color:var(--black); padding:18px 8px; border-radius:12px; display:inline-block; text-decoration:none; }
-    .btn-hem, .btn-t6{ background:var(--kuning); color:var(--black); padding:18px 8px; border-radius:12px; display:inline-block; text-decoration:none; }
-    .btn-hem, .btn-ppki{ background:var(--kuning); color:var(--black); padding:18px 8px; border-radius:12px; display:inline-block; text-decoration:none; }
-    .btn-hem, .btn-ubk{ background:var(--kuning); color:var(--black); padding:18px 8px; border-radius:12px; display:inline-block; text-decoration:none; }
-    .btn-hem, .btn-hem{ background:var(--kuning); color:var(--black); padding:18px 8px; border-radius:12px; display:inline-block; text-decoration:none; }
-    .btn-hem, .btn-kokum{ background:var(--kuning); color:var(--black); padding:18px 8px; border-radius:12px; display:inline-block; text-decoration:none; }
   </style>
 </head>
-<body>
-  <header>
-    <img src="logo-smkgunsanad.png" alt="logo">
-    <div>
-      <h1>PENGURUSAN AKADEMIK</h1>
-      <div style="font-weight:700;">SMK GUNSANAD BERABIS CEMERLANG</div>
-    </div>
-  </header>
- <main>
-       <section style="margin-top:10px; text-align:center;">
-      <h2 id="welcome-title"></h2>
-      <p id="welcome-desc"></p>
-    </section>
-   
-  <div class="grid" id="buttonGrid">
-      
-    </div>
-    
-    
-    <div class="grid" id="buttonGrid">
-      <a href="#" target="_blank" class="card btn-perdana" id="unit-perdana">PERDANA 1 - 5</a>
-      <a href="#" target="_blank" class="card btn-t6" id="unit-t6">TINGKATAN 6</a>
-      <a href="#" target="_blank" class="card btn-ppki" id="unit-ppki">PENDIDIKAN KHAS</a>
-      <a href="#" target="_blank" class="card btn-ubk" id="unit-ubk">UNIT BIMBINGAN DAN KAUNSELING</a>
-      <a href="#" target="_blank" class="card btn-hem" id="unit-hem">UNIT HAL EHWAL MURID</a>
-      <a href="#" target="_blank" class="card btn-kokum" id="unit-kokum">UNIT KOKURIKULUM</a>
-   </div>
-</body>
 
+<body>
+
+<header>
+  <img src="logo-smkgunsanad.png" alt="logo">
+  <div>
+    <h1>PENGURUSAN AKADEMIK</h1>
+    <div style="font-weight:700;">SMK GUNSANAD BERABIS CEMERLANG</div>
+  </div>
+</header>
+
+<main>
+
+  <section style="margin-top:10px; text-align:center;">
+    <h2 id="welcome-title"></h2>
+    <p id="welcome-desc"></p>
+  </section>
+
+  <!-- 🔽 BUTTON 1 BARIS KE BAWAH -->
+  <div class="grid">
+    <a href="#" target="_blank" class="card btn-perdana">PERDANA 1 - 5</a>
+    <a href="#" target="_blank" class="card btn-t6">TINGKATAN 6</a>
+    <a href="#" target="_blank" class="card btn-ppki">PENDIDIKAN KHAS</a>
+    <a href="#" target="_blank" class="card btn-ubk">UNIT BIMBINGAN DAN KAUNSELING</a>
+    <a href="#" target="_blank" class="card btn-hem">UNIT HAL EHWAL MURID</a>
+    <a href="#" target="_blank" class="card btn-kokum">UNIT KOKURIKULUM</a>
+  </div>
+
+</main>
+
+</body>
 </html>
